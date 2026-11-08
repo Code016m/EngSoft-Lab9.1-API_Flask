@@ -13,10 +13,10 @@ def get_items():
 # Get a specific item
 @app.route('/items/<int:item_id>', methods=['GET'])
 def get_item(item_id):
-    items = next((item for item in items if item['id'] == item_id), None)
-    if items is None:
-        return jsonify({'item': item})
-    return jsonify({'error': 'Item not found'}), 404
+    item = next((item for item in items if item['id'] == item_id), None)
+    if item is None:
+        return jsonify({'error': 'Item not found'}), 404
+    return jsonify({'item': item})
 
 # Create a new item
 @app.route('/items', methods=['POST'])
